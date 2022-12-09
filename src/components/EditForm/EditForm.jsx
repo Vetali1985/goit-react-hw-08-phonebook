@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/contacts/selectors';
-import { addContact } from 'redux/contacts/operations';
+import { useDispatch } from 'react-redux';
+import { editContact } from 'redux/contacts/operations';
+
 import {
   Button,
   ButtonClose,
@@ -10,13 +11,12 @@ import {
   Input,
   Label,
   Span,
-} from './ContactForm.styled';
+} from './EditForm.styled';
 
-export const ContactForm = ({ onClose }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export const EditForm = ({ onClose, id, contactName, contactNumber }) => {
+  const [name, setName] = useState(contactName);
+  const [number, setNumber] = useState(contactNumber);
 
-  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleСhange = evt => {
@@ -38,35 +38,8 @@ export const ContactForm = ({ onClose }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    const checkingName = contacts.find(item => {
-      return item.name === name;
-    });
+    dispatch(editContact({ id, name, number }));
 
-    if (checkingName) {
-      return alert(`${name} is already in contacts`);
-    }
-
-    const checkingContact = contacts.reduce(
-      (acc, item) => {
-        if (item.number === number) {
-          acc.checkingName = item.name;
-          acc.status = true;
-        }
-        return acc;
-      },
-      { status: false, checkingName: '' }
-    );
-
-    if (checkingContact.status) {
-      return alert(
-        `Number ${number} is already in contacts \nwith name ${checkingContact.checkingName}`
-      );
-    }
-
-    dispatch(addContact({ name, number }));
-
-    setName('');
-    setNumber('');
     onClose();
   };
 
@@ -104,4 +77,11 @@ export const ContactForm = ({ onClose }) => {
       </Buttons>
     </Form>
   );
+};
+
+EditForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  userNumber: PropTypes.string.isRequired,
 };

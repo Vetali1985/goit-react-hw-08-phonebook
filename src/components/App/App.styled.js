@@ -14,8 +14,7 @@ export const Wrapper = styled.div`
   padding: 26px;
   max-width: 360px;
   transform: translateY(20px);
-  background-color:#999999;
-  border: solid black;
+  border: solid rgb(34, 139, 34);
   border-radius: 5px;
 `;
 
@@ -28,11 +27,13 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
 
+  font-size: 14px;
+
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover {
     color: #fff;
-    background-color: green;
+    background-color: #0eedc4f2;
   }
 `;

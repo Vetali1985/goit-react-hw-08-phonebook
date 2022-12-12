@@ -25,8 +25,8 @@ export const MainStyled = styled.main`
     flex-direction: column;
     align-items: center;
     border: 6px groove gray;
-    max-width: max-content;
-    height:max-content;
+    /* max-width: max-content; */
+   height:300px;
     margin-left: auto;
 `;
 

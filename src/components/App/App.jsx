@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import { useAuth } from 'hooks';
 import { refreshUser } from 'redux/auth/operations';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { RestrictedRoute } from 'components/RestrictedRoute';
-import { PrivateRoute } from 'components/PrivateRoute';
+import { RestrictedRoute } from 'routes/RestrictedRoute';
+import { PrivateRoute } from 'routes/PrivateRoute';
 
 const HomePage = lazy(() => import('pages/Home'));
 const RegisterPage = lazy(() => import('pages/Register'));

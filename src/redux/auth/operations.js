@@ -32,7 +32,8 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', credentials);
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) { Notiflix.Notify.failure('The data entered is incorrect');
+    } catch (error) {
+      Notiflix.Notify.failure('The data entered is incorrect');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

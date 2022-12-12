@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -31,7 +32,7 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', credentials);
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) {
+    } catch (error) { Notiflix.Notify.failure('The data entered is incorrect');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

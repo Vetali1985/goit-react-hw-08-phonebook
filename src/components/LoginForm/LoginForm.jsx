@@ -3,7 +3,6 @@ import { logIn } from 'redux/auth/operations';
 
 import { Form, Label } from './LoginForm.syled';
 import { ButtonLogOut } from 'components/UserMenu/UserMenu.styled';
-import Notiflix from 'notiflix';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -12,18 +11,16 @@ export const LoginForm = () => {
     evt.preventDefault();
 
     const form = evt.currentTarget;
+    console.log(form);
 
-    if (logIn) {
-      dispatch(
-        logIn({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      );
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
 
-      form.reset();
-    }
-    Notiflix.Notify.failure('the data entered is incorrect');
+    form.reset();
   };
 
   return (
